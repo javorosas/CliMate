@@ -10,6 +10,7 @@
 #import "Weather.h"
 #import "WeatherService.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface ViewController ()
 
@@ -22,6 +23,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 
 
+
+@property (strong, nonatomic) NSNumber *latitude;
+@property (strong, nonatomic) NSNumber *longitude;
+
 - (void)update;
 - (IBAction)refresh:(id)sender;
 - (IBAction)unitsSelected:(id)sender;
@@ -30,11 +35,19 @@
 
 @implementation ViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
     
-    [self update];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,7 +59,7 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     WeatherService *service = [WeatherService sharedInstance];
     NSString *units = self.unitsSegment.selectedSegmentIndex == 0 ? @"metric" : @"imperial";
-    Weather *weather = [Weather initWithLongitude:@(-110.97) latitude:@(29.07) units:units];
+    Weather *weather = [Weather initWithLongitude:self.longitude latitude:self.latitude units:units];
     [service updateWeather:weather withCompletion:^(NSError *error) {
         if (error) {
             NSLog(@"%@", error);
@@ -68,5 +81,29 @@
 
 - (IBAction)unitsSelected:(id)sender {
     [self update];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    NSLog(@"didUpdateLocations: %@", locations[0]);
+    CLLocation *currentLocation = locations[0];
+    
+    if (currentLocation != nil) {
+        self.latitude = [NSNumber numberWithFloat:currentLocation.coordinate.latitude];
+        self.longitude = [NSNumber numberWithFloat:currentLocation.coordinate.longitude];
+        [self update];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    NSLog(@"WHAAT?");
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    if (error) {
+        NSLog(@"locationManager failed%@", error);
+        self.latitude = @(19.43);
+        self.longitude = @(-99.13);
+        [self update];
+    }
 }
 @end
