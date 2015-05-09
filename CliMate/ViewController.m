@@ -11,6 +11,7 @@
 #import "WeatherService.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <CoreLocation/CoreLocation.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ViewController ()
 
@@ -69,7 +70,7 @@
             self.cloudsLabel.text = [NSString stringWithFormat:@"Clouds: %@", weather.clouds];
             self.pressureLabel.text = [NSString stringWithFormat:@"Pressure: %@ hpa", weather.pressure];
             self.statusLabel.text = weather.status;
-            self.iconImage.image = [UIImage imageWithData:weather.icon];
+            [self.iconImage sd_setImageWithURL:weather.icon];
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];

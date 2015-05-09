@@ -39,10 +39,7 @@
              weather.clouds = responseObject[@"clouds"][@"all"];
              weather.pressure = responseObject[@"main"][@"pressure"];
              weather.unit_symbol = [weather.units isEqualToString:@"metric"] ? @"C" : @"F";
-             NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@.png", iconUrl, responseObject[@"weather"][0][@"icon"]]];
-             NSLog(@"%@", imageUrl.description);
-             weather.icon = [NSData dataWithContentsOfURL:imageUrl];
-             NSLog(@"2 %@", imageUrl.description);
+             weather.icon = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@.png", iconUrl, responseObject[@"weather"][0][@"icon"]]];
              weather.status = responseObject[@"weather"][0][@"description"];
              handler(nil);
          }

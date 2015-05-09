@@ -17,7 +17,7 @@
 @property NSNumber *pressure;
 @property NSNumber *humidity;
 @property NSNumber *clouds;
-@property NSData *icon;
+@property NSURL *icon;
 @property NSString *status;
 @property NSString *unit_symbol;
 
