@@ -90,6 +90,7 @@
     if (currentLocation != nil) {
         self.latitude = [NSNumber numberWithFloat:currentLocation.coordinate.latitude];
         self.longitude = [NSNumber numberWithFloat:currentLocation.coordinate.longitude];
+        [self.locationManager stopUpdatingLocation];
         [self update];
     }
 }

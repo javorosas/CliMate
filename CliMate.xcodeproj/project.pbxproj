@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E5742091AFD88AE0056E019 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E5742081AFD88AE0056E019 /* CoreLocation.framework */; };
+		3E57420B1AFDA0B60056E019 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 3E57420A1AFDA0B60056E019 /* README.md */; };
 		3E795D411AFC1F4200559A3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E795D401AFC1F4200559A3C /* main.m */; };
 		3E795D441AFC1F4200559A3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E795D431AFC1F4200559A3C /* AppDelegate.m */; };
 		3E795D471AFC1F4200559A3C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E795D461AFC1F4200559A3C /* ViewController.m */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		2F3759E5FC92CF023C1CC4A8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E5742081AFD88AE0056E019 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3E57420A1AFDA0B60056E019 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3E795D3B1AFC1F4200559A3C /* CliMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CliMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E795D3F1AFC1F4200559A3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E795D401AFC1F4200559A3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		3E795D321AFC1F4200559A3C = {
 			isa = PBXGroup;
 			children = (
+				3E57420A1AFDA0B60056E019 /* README.md */,
 				3E795D3D1AFC1F4200559A3C /* CliMate */,
 				3E795D571AFC1F4300559A3C /* CliMateTests */,
 				3E795D3C1AFC1F4200559A3C /* Products */,
@@ -324,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E57420B1AFDA0B60056E019 /* README.md in Sources */,
 				3E795D6B1AFC20E100559A3C /* WeatherService.m in Sources */,
 				3E795D671AFC1FBA00559A3C /* Weather.m in Sources */,
 				3E795D471AFC1F4200559A3C /* ViewController.m in Sources */,
