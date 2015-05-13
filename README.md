@@ -8,3 +8,9 @@
     * Pressure
     * Number of clouds
 * Loads an icon that represents the weather and shows it
+
+### What I larned
+* Reinforce using **AFNetworking** library. For easily making HTTP calls
+* **SDWebImage** library. Get an image from an URL asynchronously and take care of caching
+* TableView custom cells.
+* **NSUserDefaults**. Persist simple settings for the app.

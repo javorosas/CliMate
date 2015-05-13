@@ -23,11 +23,6 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *unitsSegment;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 
-
-
-@property (strong, nonatomic) NSNumber *latitude;
-@property (strong, nonatomic) NSNumber *longitude;
-
 - (void)update;
 - (IBAction)refresh:(id)sender;
 - (IBAction)unitsSelected:(id)sender;
@@ -36,7 +31,8 @@
 
 @implementation ViewController
 
-
+float const kDefaultLatitude = 19.43;
+float const kDefaultLongitude = -99.13;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,9 +43,25 @@
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [self.locationManager requestWhenInUseAuthorization];
     }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *units = [defaults objectForKey:@"units"];
+    if (!units) {
+        [defaults setObject:@"metric" forKey:@"units"];
+        [defaults synchronize];
+    }
+    self.unitsSegment.selectedSegmentIndex = [units isEqualToString:@"metric"] ? 0 : 1;
     [self.locationManager startUpdatingLocation];
-    
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -59,13 +71,16 @@
 - (void)update {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     WeatherService *service = [WeatherService sharedInstance];
-    NSString *units = self.unitsSegment.selectedSegmentIndex == 0 ? @"metric" : @"imperial";
-    Weather *weather = [Weather initWithLongitude:self.longitude latitude:self.latitude units:units];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *units = [defaults objectForKey:@"units"];
+    Weather *weather = [[Weather alloc] init];
     [service updateWeather:weather withCompletion:^(NSError *error) {
         if (error) {
             NSLog(@"%@", error);
         } else {
-            self.temperatureLabel.text = [NSString stringWithFormat:@"%ld°%@", [weather.temp integerValue], weather.unit_symbol];
+            NSString *unitSymbol = [units isEqualToString:@"metric"] ? @"C" : @"F";
+            self.temperatureLabel.text = [NSString stringWithFormat:@"%ld°%@", [weather.temp integerValue], unitSymbol];
             self.humidityLabel.text = [NSString stringWithFormat:@"Humidity: %@ %%", weather.humidity];
             self.cloudsLabel.text = [NSString stringWithFormat:@"Clouds: %@", weather.clouds];
             self.pressureLabel.text = [NSString stringWithFormat:@"Pressure: %@ hpa", weather.pressure];
@@ -81,6 +96,10 @@
 }
 
 - (IBAction)unitsSelected:(id)sender {
+    NSString *units = self.unitsSegment.selectedSegmentIndex == 0 ? @"metric" : @"imperial";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:units forKey:@"units"];
+    [defaults synchronize];
     [self update];
 }
 
@@ -89,22 +108,22 @@
     CLLocation *currentLocation = locations[0];
     
     if (currentLocation != nil) {
-        self.latitude = [NSNumber numberWithFloat:currentLocation.coordinate.latitude];
-        self.longitude = [NSNumber numberWithFloat:currentLocation.coordinate.longitude];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@(currentLocation.coordinate.latitude) forKey:@"latitude"];
+        [defaults setObject:@(currentLocation.coordinate.longitude) forKey:@"longitude"];
+        [defaults synchronize];
         [self.locationManager stopUpdatingLocation];
         [self update];
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    NSLog(@"WHAAT?");
-}
-
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     if (error) {
         NSLog(@"locationManager failed%@", error);
-        self.latitude = @(19.43);
-        self.longitude = @(-99.13);
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@(kDefaultLatitude) forKey:@"latitude"];
+        [defaults setObject:@(kDefaultLongitude) forKey:@"longitude"];
+        [defaults synchronize];
         [self update];
     }
 }

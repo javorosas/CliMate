@@ -10,17 +10,14 @@
 
 @interface Weather : NSObject
 
-@property (nonatomic, strong) NSNumber *lat;
-@property NSNumber *lon;
-@property NSNumber *temp;
-@property NSString *units;
-@property NSNumber *pressure;
-@property NSNumber *humidity;
-@property NSNumber *clouds;
-@property NSURL *icon;
-@property NSString *status;
-@property NSString *unit_symbol;
-
-+ (instancetype)initWithLongitude:(NSNumber *)longitude latitude:(NSNumber *)latitude units:(NSString *)units;
+@property (strong, nonatomic) NSNumber *temp;
+@property (strong, nonatomic) NSNumber *pressure;
+@property (strong, nonatomic) NSNumber *humidity;
+@property (strong, nonatomic) NSNumber *clouds;
+@property (strong, nonatomic) NSURL *icon;
+@property (strong, nonatomic) NSString *status;
+@property (strong, nonatomic) NSNumber *minTemp;
+@property (strong, nonatomic) NSNumber *maxTemp;
+@property (strong, nonatomic) NSDate *date;
 
 @end

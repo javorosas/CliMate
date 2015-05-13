@@ -20,6 +20,8 @@
 		3E795D6B1AFC20E100559A3C /* WeatherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E795D6A1AFC20E100559A3C /* WeatherService.m */; };
 		3E795D701AFC44D500559A3C /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E795D6F1AFC44D500559A3C /* refresh.png */; };
 		3E795D721AFD3F1400559A3C /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E795D711AFD3F1300559A3C /* bg.jpg */; };
+		3E8519541B0191570041E45F /* ForecastListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8519531B0191570041E45F /* ForecastListController.m */; };
+		3E85195C1B02D35A0041E45F /* ForecastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E85195B1B02D35A0041E45F /* ForecastCell.m */; };
 		D39729FF92BFB19F82149230 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3759E5FC92CF023C1CC4A8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +58,10 @@
 		3E795D6A1AFC20E100559A3C /* WeatherService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherService.m; path = Service/WeatherService.m; sourceTree = "<group>"; };
 		3E795D6F1AFC44D500559A3C /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		3E795D711AFD3F1300559A3C /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
+		3E8519521B0191570041E45F /* ForecastListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastListController.h; sourceTree = "<group>"; };
+		3E8519531B0191570041E45F /* ForecastListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastListController.m; sourceTree = "<group>"; };
+		3E85195A1B02D35A0041E45F /* ForecastCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastCell.h; sourceTree = "<group>"; };
+		3E85195B1B02D35A0041E45F /* ForecastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastCell.m; sourceTree = "<group>"; };
 		65EBC2B72A9FAFD39481585D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E18DB22F869D41CB0F7E68DC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +121,10 @@
 				3E795D4B1AFC1F4200559A3C /* Images.xcassets */,
 				3E795D4D1AFC1F4200559A3C /* LaunchScreen.xib */,
 				3E795D3E1AFC1F4200559A3C /* Supporting Files */,
+				3E85195A1B02D35A0041E45F /* ForecastCell.h */,
+				3E85195B1B02D35A0041E45F /* ForecastCell.m */,
+				3E8519521B0191570041E45F /* ForecastListController.h */,
+				3E8519531B0191570041E45F /* ForecastListController.m */,
 			);
 			path = CliMate;
 			sourceTree = "<group>";
@@ -327,12 +337,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E85195C1B02D35A0041E45F /* ForecastCell.m in Sources */,
 				3E57420B1AFDA0B60056E019 /* README.md in Sources */,
 				3E795D6B1AFC20E100559A3C /* WeatherService.m in Sources */,
 				3E795D671AFC1FBA00559A3C /* Weather.m in Sources */,
 				3E795D471AFC1F4200559A3C /* ViewController.m in Sources */,
 				3E795D441AFC1F4200559A3C /* AppDelegate.m in Sources */,
 				3E795D411AFC1F4200559A3C /* main.m in Sources */,
+				3E8519541B0191570041E45F /* ForecastListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
