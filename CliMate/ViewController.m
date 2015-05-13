@@ -77,7 +77,7 @@ float const kDefaultLongitude = -99.13;
     Weather *weather = [[Weather alloc] init];
     [service updateWeather:weather withCompletion:^(NSError *error) {
         if (error) {
-            NSLog(@"%@", error);
+            [UIAlertController alertControllerWithTitle:@"Error" message:error.description preferredStyle:UIAlertControllerStyleAlert];
         } else {
             NSString *unitSymbol = [units isEqualToString:@"metric"] ? @"C" : @"F";
             self.temperatureLabel.text = [NSString stringWithFormat:@"%ld°%@", [weather.temp integerValue], unitSymbol];
