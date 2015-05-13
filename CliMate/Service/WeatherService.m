@@ -31,8 +31,6 @@ static NSString *iconUrl = @"http://openweathermap.org/img/w/";
                       @"lon": [defaults objectForKey:@"longitude"],
                       @"units": [defaults objectForKey:@"units"] };
     
-    NSLog(@"%@", params);
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:url
       parameters:params
