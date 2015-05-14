@@ -18,8 +18,6 @@
 		3E795D5B1AFC1F4300559A3C /* CliMateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E795D5A1AFC1F4300559A3C /* CliMateTests.m */; };
 		3E795D671AFC1FBA00559A3C /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E795D661AFC1FBA00559A3C /* Weather.m */; };
 		3E795D6B1AFC20E100559A3C /* WeatherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E795D6A1AFC20E100559A3C /* WeatherService.m */; };
-		3E795D701AFC44D500559A3C /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E795D6F1AFC44D500559A3C /* refresh.png */; };
-		3E795D721AFD3F1400559A3C /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E795D711AFD3F1300559A3C /* bg.jpg */; };
 		3E8519541B0191570041E45F /* ForecastListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8519531B0191570041E45F /* ForecastListController.m */; };
 		3E85195C1B02D35A0041E45F /* ForecastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E85195B1B02D35A0041E45F /* ForecastCell.m */; };
 		D39729FF92BFB19F82149230 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3759E5FC92CF023C1CC4A8 /* libPods.a */; };
@@ -56,8 +54,6 @@
 		3E795D661AFC1FBA00559A3C /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weather.m; path = Models/Weather.m; sourceTree = "<group>"; };
 		3E795D691AFC20E100559A3C /* WeatherService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherService.h; path = Service/WeatherService.h; sourceTree = "<group>"; };
 		3E795D6A1AFC20E100559A3C /* WeatherService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherService.m; path = Service/WeatherService.m; sourceTree = "<group>"; };
-		3E795D6F1AFC44D500559A3C /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
-		3E795D711AFD3F1300559A3C /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		3E8519521B0191570041E45F /* ForecastListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastListController.h; sourceTree = "<group>"; };
 		3E8519531B0191570041E45F /* ForecastListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastListController.m; sourceTree = "<group>"; };
 		3E85195A1B02D35A0041E45F /* ForecastCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastCell.h; sourceTree = "<group>"; };
@@ -110,7 +106,6 @@
 		3E795D3D1AFC1F4200559A3C /* CliMate */ = {
 			isa = PBXGroup;
 			children = (
-				3E795D6C1AFC437200559A3C /* Assets */,
 				3E795D681AFC20A900559A3C /* Service */,
 				3E795D641AFC1F7E00559A3C /* Models */,
 				3E795D421AFC1F4200559A3C /* AppDelegate.h */,
@@ -171,15 +166,6 @@
 				3E795D6A1AFC20E100559A3C /* WeatherService.m */,
 			);
 			name = Service;
-			sourceTree = "<group>";
-		};
-		3E795D6C1AFC437200559A3C /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				3E795D711AFD3F1300559A3C /* bg.jpg */,
-				3E795D6F1AFC44D500559A3C /* refresh.png */,
-			);
-			name = Assets;
 			sourceTree = "<group>";
 		};
 		6F1948A92EA44F9054D2BFF3 /* Pods */ = {
@@ -282,9 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E795D721AFD3F1400559A3C /* bg.jpg in Resources */,
 				3E795D4A1AFC1F4200559A3C /* Main.storyboard in Resources */,
-				3E795D701AFC44D500559A3C /* refresh.png in Resources */,
 				3E795D4F1AFC1F4200559A3C /* LaunchScreen.xib in Resources */,
 				3E795D4C1AFC1F4200559A3C /* Images.xcassets in Resources */,
 			);
@@ -472,6 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CliMate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -483,6 +468,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CliMate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

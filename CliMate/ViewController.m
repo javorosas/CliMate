@@ -80,7 +80,7 @@ float const kDefaultLongitude = -99.13;
             [UIAlertController alertControllerWithTitle:@"Error" message:error.description preferredStyle:UIAlertControllerStyleAlert];
         } else {
             NSString *unitSymbol = [units isEqualToString:@"metric"] ? @"C" : @"F";
-            self.temperatureLabel.text = [NSString stringWithFormat:@"%ld°%@", [weather.temp integerValue], unitSymbol];
+            self.temperatureLabel.text = [NSString stringWithFormat:@"%li°%@", [weather.temp longValue], unitSymbol];
             self.humidityLabel.text = [NSString stringWithFormat:@"Humidity: %@ %%", weather.humidity];
             self.cloudsLabel.text = [NSString stringWithFormat:@"Clouds: %@", weather.clouds];
             self.pressureLabel.text = [NSString stringWithFormat:@"Pressure: %@ hpa", weather.pressure];

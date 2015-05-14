@@ -14,6 +14,9 @@
 @interface ForecastListController ()
 
 @property NSArray *forecast;
+@property NSString *unitSymbol;
+@property NSUserDefaults *defaults;
+@property NSDateFormatter *dateFormatter;
 
 @end
 
@@ -33,6 +36,13 @@ static NSString *CellIdentifier = @"ForecastCellIdentifier";
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+
+     
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setupPrivateProps];
     WeatherService *service = [WeatherService sharedInstance];
     [service getForecastWithCompletion:^(NSError *error, NSArray *forecast) {
         if (error) {
@@ -42,7 +52,13 @@ static NSString *CellIdentifier = @"ForecastCellIdentifier";
             [self.tableView reloadData];
         }
     }];
-     
+}
+
+- (void)setupPrivateProps {
+    self.defaults = [NSUserDefaults standardUserDefaults];
+    self.unitSymbol = [[self.defaults objectForKey:@"units"] isEqualToString:@"metric"] ? @"C" : @"F";
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    [self.dateFormatter setDateFormat:@"EEE MMM d"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,21 +79,17 @@ static NSString *CellIdentifier = @"ForecastCellIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     ForecastCell *cell = (ForecastCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     Weather *weather = self.forecast[indexPath.row];
-    NSString *unitSymbol = [[defaults objectForKey:@"units"] isEqualToString:@"metric"] ? @"C" : @"F";
     cell.status.text = weather.status;
-    cell.minTemp.text = [NSString stringWithFormat:@"Min: %li°%@", [weather.minTemp integerValue], unitSymbol];
-    cell.maxTemp.text = [NSString stringWithFormat:@"Max: %li°%@", [weather.maxTemp integerValue], unitSymbol];
+    cell.minTemp.text = [NSString stringWithFormat:@"Min: %li°%@", [weather.minTemp longValue], self.unitSymbol];
+    cell.maxTemp.text = [NSString stringWithFormat:@"Max: %li°%@", [weather.maxTemp longValue], self.unitSymbol];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEE MMM d"];
-    cell.date.text = [dateFormatter stringFromDate:weather.date];
+    cell.date.text = [self.dateFormatter stringFromDate:weather.date];
     
     [cell.icon sd_setImageWithURL:weather.icon];
-    
     
     return cell;
 }
